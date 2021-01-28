@@ -7,6 +7,7 @@ from models.amenity import Amenity
 from models import storage
 import json
 
+
 @app_views.route('/amenities', strict_slashes=False)
 def amenities():
     """
@@ -32,6 +33,7 @@ def list_amenity(amenity_id):
     theAmenity = theAmenity.to_dict()
     return jsonify(theAmenity)
 
+
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_amenity():
     """
@@ -50,7 +52,9 @@ def create_amenity():
 
     return make_response(jsonify(instance.to_dict()), 201)
 
-@app_views.route('/amenities/<amenity_id>', methods=['PUT'], strict_slashes=False)
+
+@app_views.route('/amenities/<amenity_id>', methods=['PUT'],
+                 strict_slashes=False)
 def update_amenity(amenity_id):
     """
     Update any amenity object
@@ -68,6 +72,7 @@ def update_amenity(amenity_id):
     storage.save()
 
     return make_response(jsonify(theAmenity.to_dict()), 200)
+
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
                  strict_slashes=False)
