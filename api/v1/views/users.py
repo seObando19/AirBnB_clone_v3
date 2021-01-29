@@ -26,7 +26,7 @@ def list_user(user_id):
     """
     Return to user for the id
     """
-    theUser = storage.get('State', user_id)
+    theUser = storage.get('User', user_id)
     if theUser is None:
         abort(404)
 
