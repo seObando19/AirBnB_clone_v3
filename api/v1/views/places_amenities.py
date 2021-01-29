@@ -8,7 +8,7 @@ from models.amenity import Amenity
 from models.place import Place
 
 
-@app_views.route('/places/<string:place_id>/amenities'
+@app_views.route('/places/<string:place_id>/amenities', methods=['GET'],
                  strict_slashes=False)
 def get_place_amenities(place_id):
     """get amenity information for a specified place"""
