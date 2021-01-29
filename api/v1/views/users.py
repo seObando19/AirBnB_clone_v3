@@ -26,7 +26,7 @@ def list_user(user_id):
     """
     Return to user for the id
     """
-    theUser = storage.get('State', user_id)
+    theUser = storage.get('User', user_id)
     if theUser is None:
         abort(404)
 
@@ -43,8 +43,11 @@ def create_user():
         abort(400, "Not a JSON")
     data = request.json
 
-    if "name" not in data.keys():
-        abort(400, "Missing name")
+    if "email" not in data.keys():
+        abort(400, "Missing email")
+
+    if "password" not in data.keys():
+        abort(400, "Missing password")
 
     instance = User(**data)
     storage.new(instance)
