@@ -22,7 +22,7 @@ def list_cities(state_id):
 
 
 @app_views.route('/cities/<city_id>', strict_slashes=False)
-def city(city_id):
+def list_city(city_id):
     """
     Return to city for the id
     """
@@ -51,7 +51,7 @@ def create_city(state_id):
     if state is None:
         abort(404)
 
-    data["state_id"] = state_id
+    data['state_id'] = state_id
     instance = City(**data)
     storage.new(instance)
     storage.save()
@@ -65,11 +65,14 @@ def update_city(city_id):
     """
     Update any city object
     """
+    city = storage.get('City', city_id)
+    if city is None:
+        abort(404)
+
     if not request.json:
         abort(400, "Not a JSON")
 
     data = request.json
-    city = storage.get('City', city_id)
 
     for key, value in data.items():
         setattr(city, key, value)
