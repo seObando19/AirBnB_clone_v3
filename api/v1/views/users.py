@@ -43,8 +43,11 @@ def create_user():
         abort(400, "Not a JSON")
     data = request.json
 
-    if "name" not in data.keys():
-        abort(400, "Missing name")
+    if "email" not in data.keys():
+        abort(400, "Missing email")
+
+    if "password" not in data.keys():
+        abort(400, "Missing password")
 
     instance = User(**data)
     storage.new(instance)
